@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+ Acheter : {{ list.price }}
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center">La Centra-Fake</h1>
+
+    <a href="{{ path('app_home') }}">
+          <p> Retourner a l'accueil </p>
+    </a>
+      <p> {{list.price}} </p>
+      <p> {{list.description}} </p>
+      <p> {{list.producedYear}} </p>
+      <p> {{list.createdAt | date('d/m/Y') }}
+{% endblock %}

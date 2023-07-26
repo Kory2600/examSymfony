@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+   La Centra-Fake
+{% endblock %}
+
+{% block leogout_seo %}
+    <meta name="description"
+          content="La centra-fake : Annonces de voitures">
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-center">La Centra-Fake</h1>
+
+    <div class="row">
+        {% for list in lastLists %}
+    <a href="{{ path('app_home_redirect', { 'id': list.id }) }}">
+    <p> {{list.model.name}}
+    </a>
+        <p>Titre : {{list.title}} </p>
+        <p>Prix :{{list.price}} $</p>
+        <p>Description : {{list.description}} </p>
+        <p> Annne de prod :{{list.producedYear}} </p>
+        <p>Kilometrage : {{list.mileage}} </p>
+      
+    {% endfor %}
+    </div>
+
+{% endblock %}
