@@ -16,15 +16,17 @@
     <div class="row">
         {% for list in lastLists %}
     <a href="{{ path('app_home_redirect', { 'id': list.id }) }}">
-    <p> {{list.model.name}}
+    <p>{{list.model.brand.name}} {{list.model.name}}  </p>
     </a>
+    
         <p>Titre : {{list.title}} </p>
         <p>Prix :{{list.price}} $</p>
         <p>Description : {{list.description}} </p>
         <p> Annne de prod :{{list.producedYear}} </p>
         <p>Kilometrage : {{list.mileage}} </p>
-      
     {% endfor %}
     </div>
+
+    <a href="{{path('app_home_addlist')}}"> Ajouter une annonce </a>
 
 {% endblock %}

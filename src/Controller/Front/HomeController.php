@@ -2,10 +2,12 @@
 
 namespace App\Controller\Front;
 
+
 use App\Entity\Listing;
 use App\Entity\Brand;
 use App\Entity\Modele;
 use App\Repository\ListingRepository;
+use App\Form\AddListType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -35,5 +37,24 @@ class HomeController extends AbstractController
         'id' => $id,
         'list' => $list,
      ]);
+}
+
+#[Route('/new', name: 'app_home_addlist', methods: ['GET', 'POST'])]
+public function newList(
+    Request $request,
+    ListingRepository $listingRepository): Response
+{
+    $newlist = new Listing();
+    $form = $this->createForm(AddListType::class, $newlist);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $listingRepository->save($newlist, true);
+    }
+
+    return $this->renderForm('Front/addList.twig', [
+        'lists' => $newlist,
+        'form' => $form,
+    ]);
 }
 }
